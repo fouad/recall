@@ -1,0 +1,23 @@
+sudo: false
+dist: trusty
+language: node_js
+
+script:
+  - npm run build
+  - npm test
+  - npm run check_format
+
+branches:
+  only:
+    - master
+
+cache:
+  npm: true
+s
+matrix:
+  include:
+    - os: linux
+      node_js: "8"
+    - os: linux
+      node_js: "6"
+  fast_finish: true

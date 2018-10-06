@@ -1,0 +1,35 @@
+{
+  "name": "recall",
+  "version": "0.0.2",
+  "description": "Simple library for tracing Node.js programs with Google's Trace Event",
+  "main": "./dist/recall.js",
+  "typings": "./dist/recall.d.ts",
+  "scripts": {
+    "test": "ava",
+    "build": "tsc",
+    "check_format": "prettier -l lib/** test/** examples/**"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fouad/recall.git"
+  },
+  "keywords": [
+    "trace",
+    "trace-event"
+  ],
+  "author": "Fouad Matin <open@fouad.org>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fouad/recall/issues"
+  },
+  "homepage": "https://github.com/fouad/recall#readme",
+  "dependencies": {
+    "tslib": "^1.9.3"
+  },
+  "devDependencies": {
+    "@types/node": "^10.11.4",
+    "ava": "^0.25.0",
+    "prettier": "^1.14.3",
+    "typescript": "^3.1.1"
+  }
+}
