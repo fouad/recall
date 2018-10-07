@@ -11,7 +11,7 @@ const performanceNow =
 
 // generate timestamp or delta
 // see http://nodejs.org/api/process.html#process_process_hrtime
-export function hrtime(previousTimestamp? : Array<number>) {
+export function hrtime(previousTimestamp?: Array<number>) {
   if (typeof process !== 'undefined') {
     return process.hrtime()
   }

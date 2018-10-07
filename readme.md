@@ -9,15 +9,14 @@
 <br/>
 
 <p align="center">
-  <a href="https://unpkg.com/recall/dist/recall.min.js">
-    <img src="https://img.badgesize.io/https://unpkg.com/recall/dist/recall.min.js?compression=gzip&amp;label=recall&cache=3">
+  <a href="https://unpkg.com/recall/dist/recall.js">
+    <img src="https://img.badgesize.io/https://unpkg.com/recall/dist/recall.js?compression=gzip&amp;label=recall&cache=4">
   </a>
   <a href="https://www.npmjs.com/package/recall">
-    <img src="https://img.shields.io/npm/v/recall.svg?maxAge=3600&label=recall&colorB=007ec6&cache=3">
+    <img src="https://img.shields.io/npm/v/recall.svg?maxAge=3600&label=recall&colorB=007ec6&cache=4">
   </a>
 </p>
 <br/>
-
 
 ### Getting Started
 
@@ -75,19 +74,21 @@ trace.begin('myapp.some-random.eventName', {
 // Or you can pass in an `analytics-event` compatible object
 trace.end({
   name: 'myapp.some-random.eventName',
-  props: { 
+  props: {
     variant: 'A'
   }
 })
 
 // Or you can manually generate the event
-trace.push(getEvent({
-  type: 'end',
-  name: 'myapp.some-random.eventName',
-  props: {
-    variant: 'A'
-  }
-}))
+trace.push(
+  getEvent({
+    type: 'end',
+    name: 'myapp.some-random.eventName',
+    props: {
+      variant: 'A'
+    }
+  })
+)
 ```
 
 #### Logging the trace

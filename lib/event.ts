@@ -1,21 +1,59 @@
 import { hrtime } from './utils'
 
-export interface Event {
-  ts: number;
-  pid: number;
-  tid: number;
-  /** event phase */
-  ph?: string;
-  [otherData: string]: any;
+const isNode = typeof process !== 'undefined'
+// Unicode computer = `5535756507` in decimal
+const DEFAULT_PID = isNode ? process.pid : 5535756507
+
+export interface EventInput {
+  id?: number
+  ts?: number
+  pid?: number
+  tid?: number
+  type?: string
+  name?: string
+  tags?: string[]
+  props?: any
 }
 
-export function getEvent(): Event {
-  const time = hrtime() // [seconds, nanoseconds]
-  const ts = time[0] * 1000000 + Math.round(time[1] / 1000) // microseconds
+export interface Event {
+  pid: number
+  tid: number
+  ts: number
+  args?: any
+  id?: number
+  ph?: string
+  cat?: string
+  name?: string
+}
 
-  return {
+export function getEvent(input: EventInput): Event {
+  const time = hrtime()
+  const ts = input.ts || time[0] * 1000000 + Math.round(time[1] / 1000)
+
+  const output = <Event>{
     ts,
-    pid: process.pid,
-    tid: process.pid // no meaningful tid for node.js
+    ph: input.type,
+    pid: input.pid || DEFAULT_PID,
+    tid: input.tid || DEFAULT_PID
   }
+
+  if (input.id) {
+    output.id = input.id
+  }
+
+  if (input.name) {
+    output.name = input.name
+  }
+
+  if (input.props) {
+    output.args = input.props
+  }
+
+  if (input.tags && input.tags.length > 0) {
+    output.cat = input.tags.join(', ')
+  } else {
+    output.cat = 'blink.user_timing'
+  }
+
+  return output
 }

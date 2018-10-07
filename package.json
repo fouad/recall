@@ -1,12 +1,13 @@
 {
   "name": "recall",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Simple library for tracing Node.js programs with Google's Trace Event",
   "main": "./dist/recall.js",
   "typings": "./dist/recall.d.ts",
   "scripts": {
     "test": "ava",
     "build": "tsc",
+    "t": "npm run build && npm run test",
     "check_format": "prettier -l lib/** test/** examples/**"
   },
   "repository": {
